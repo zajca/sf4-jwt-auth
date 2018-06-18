@@ -1,0 +1,22 @@
+ {
+  "schemaVersion" :1 ,
+  "dockerfileLines" :[
+        "FROM zajca/php:symfony",
+		"ENV APP_ENV=prod",
+		"ENV APP_SECRET=241d4d1c8a5b6f0cfe7810077c1babca",
+		"ENV CORS_ALLOW_ORIGIN=^https?://localhost:?[0-9]*$",
+		"ENV JWT_PASSPHRASE=0be0ef50af4bccb53b6580ca90eccd25",
+		"ENV JWT_PRIVATE_KEY_PATH=config/jwt/private.pem",
+		"ENV JWT_PUBLIC_KEY_PATH=config/jwt/public.pem",
+	    "RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/",
+	    "RUN mkdir -p /usr/local/bin/ && curl -s -o installer.php \"https://getcomposer.org/installer\" && php installer.php --install-dir=/usr/local/bin --filename=composer",
+	    "RUN mkdir -p /usr/app",
+	    "COPY ./src/composer.json /usr/app/",
+	    "COPY ./src/composer.lock /usr/app/",
+	    "COPY ./src/symfony.lock /usr/app/",
+	    "RUN composer install --no-ansi --no-dev --no-interaction --no-progress --no-scripts --optimize-autoloader -d /usr/app",
+	    "COPY ./src /usr/app",
+	    "WORKDIR /usr/app/public",
+        "EXPOSE 80"
+    ]
+ }
