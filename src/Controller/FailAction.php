@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\SerializerResponse;
+use App\Base\Rest\View;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -12,7 +12,7 @@ final class FailAction
     /**
      * @Route("/no-api/fail", methods={"GET"})
      */
-    public function __invoke(): SerializerResponse
+    public function __invoke(): View
     {
         throw new NotFoundHttpException();
     }

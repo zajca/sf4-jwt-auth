@@ -1,16 +1,16 @@
 <?php declare(strict_types=1);
 
-namespace App\Listener;
+namespace App\Base\Rest\Listener;
 
 
-use App\SerializerResponse;
+use App\Base\Rest\View;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Serializer\SerializerInterface;
 
-class SerializerListener implements EventSubscriberInterface
+class ViewResponseListener implements EventSubscriberInterface
 {
     
     /**
@@ -36,7 +36,7 @@ class SerializerListener implements EventSubscriberInterface
     public function onKernelView(GetResponseForControllerResultEvent $event)
     {
         $result = $event->getControllerResult();
-        if ($result instanceof SerializerResponse) {
+        if ($result instanceof View) {
             $json = $this->serializer->serialize($result->getData(), $result->getFormat(), $result->getContext());
             $response = new JsonResponse(null, $result->getStatusCode(), $result->getHeaders());
             $response->setJson($json);

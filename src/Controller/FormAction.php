@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
+use App\Base\Rest\View;
 use App\Form\TestDTO;
 use App\Form\TestForm;
-use App\SerializerResponse;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,7 +27,7 @@ final class FormAction
     /**
      * @Route("/no-api/form", methods={"POST"})
      */
-    public function __invoke(Request $request): SerializerResponse
+    public function __invoke(Request $request): View
     {
         $form = $this->formFactory->create(
             TestForm::class,
@@ -41,9 +41,9 @@ final class FormAction
             /** @var TestDTO $dto */
             $dto = $form->getData();
             
-            return new SerializerResponse($dto);
+            return new View($dto);
         }
         
-        return new SerializerResponse($form, Response::HTTP_BAD_REQUEST);
+        return new View($form, Response::HTTP_BAD_REQUEST);
     }
 }

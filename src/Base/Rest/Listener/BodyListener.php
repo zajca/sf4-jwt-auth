@@ -1,9 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace App\Listener;
+namespace App\Base\Rest\Listener;
 
-
-use App\Serializer\Normalizer\JsonToFormNormalizer;
+use App\Base\Rest\Serializer\Normalizer\JsonToFormNormalizer;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;

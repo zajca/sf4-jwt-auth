@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Serializer\Normalizer;
+namespace App\Base\Rest\Serializer\Normalizer;
 
 /**
  * Stolen from FOSRestBundle

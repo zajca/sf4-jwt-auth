@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\SerializerResponse;
+use App\Base\Rest\View;
+use App\Base\UserControllerTrait;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -15,8 +16,8 @@ final class TestAdminAction
      * @Route("/api/test-admin", methods={"GET"})
      * @Security("has_role('ROLE_ADMIN')")
      */
-    public function __invoke(): SerializerResponse
+    public function __invoke(): View
     {
-        return new SerializerResponse($this->getUser());
+        return new View($this->getUser());
     }
 }

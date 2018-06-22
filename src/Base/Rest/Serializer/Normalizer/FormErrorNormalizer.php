@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Serializer\Normalizer;
+namespace App\Base\Rest\Serializer\Normalizer;
 
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;

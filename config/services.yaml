@@ -31,6 +31,6 @@ services:
     App\Listener\JWTCreatedListener:
         tags:
             - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_created, method: onJWTCreated }
-    App\Serializer\Normalizer\FormErrorNormalizer:
+    App\Base\Rest\Serializer\Normalizer\FormErrorNormalizer:
         tags:
             - { name: serializer.normalizer, priority: -10 }

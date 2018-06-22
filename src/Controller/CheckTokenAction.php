@@ -6,16 +6,18 @@ use App\Base\Rest\View;
 use App\Base\UserControllerTrait;
 use Symfony\Component\Routing\Annotation\Route;
 
-final class TestAction
+final class CheckTokenAction
 {
     
     use UserControllerTrait;
     
     /**
-     * @Route("/api/test", methods={"GET"})
+     * @Route("/api/token_check", methods={"GET"})
      */
     public function __invoke(): View
     {
-        return new View($this->getUser());
+        $this->getUser();
+        
+        return new View('OK');
     }
 }

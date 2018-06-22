@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\Base;
 
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -36,7 +36,7 @@ trait UserControllerTrait
             throw new AccessDeniedHttpException();
         }
 
-        if (!is_object($user = $token->getUser())) {
+        if (!\is_object($user = $token->getUser())) {
             throw new AccessDeniedHttpException();
         }
 
